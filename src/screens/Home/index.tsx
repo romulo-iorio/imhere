@@ -4,7 +4,9 @@ import { StatusBar } from "expo-status-bar";
 import { styles } from "./styles";
 
 export const Home = () => {
-  const handleAddParticipant = () => {};
+  const handleAddParticipant = () => {
+    console.log("Adicionando participante");
+  };
 
   return (
     <SafeAreaView style={styles.container}>
