@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
+import { Participant } from "../../components";
 import { styles } from "./styles";
 
 export const Home = () => {
@@ -33,6 +34,13 @@ export const Home = () => {
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
+
+      <Participant />
+      <Participant />
+      <Participant />
+      <Participant />
+      <Participant />
+      <Participant />
     </SafeAreaView>
   );
 };
