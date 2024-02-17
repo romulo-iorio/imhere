@@ -14,7 +14,7 @@ export const Home = () => {
 
       <TextInput
         placeholder="Nome do participante"
-        placeholderTextColor="6b6b6b"
+        placeholderTextColor="#6b6b6b"
         style={styles.input}
       />
     </SafeAreaView>
