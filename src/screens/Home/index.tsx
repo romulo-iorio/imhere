@@ -1,9 +1,11 @@
-import { Text, SafeAreaView, TextInput } from "react-native";
+import { Text, SafeAreaView, TextInput, TouchableOpacity } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 import { styles } from "./styles";
 
 export const Home = () => {
+  const handleAddParticipant = () => {};
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
@@ -17,6 +19,10 @@ export const Home = () => {
         placeholderTextColor="#6b6b6b"
         style={styles.input}
       />
+
+      <TouchableOpacity style={styles.button} onPress={handleAddParticipant}>
+        <Text style={styles.buttonText}>+</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
