@@ -20,6 +20,8 @@ const EmptyList = () => (
   </Text>
 );
 
+const generateRandomID = () => Math.random().toString(36).substr(2, 9);
+
 export const Home = () => {
   const [participants, setParticipants] = useState<ParticipantInterface[]>([]);
   const [newParticipantName, setNewParticipant] = useState("");
@@ -45,7 +47,7 @@ export const Home = () => {
 
     const newParticipant: ParticipantInterface = {
       name: newParticipantName.trim(),
-      id: crypto.randomUUID(),
+      id: generateRandomID(),
     };
     setParticipants((prev) => [...prev, newParticipant]);
   };
