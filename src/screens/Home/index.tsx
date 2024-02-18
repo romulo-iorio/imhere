@@ -101,7 +101,7 @@ export const Home = () => {
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={EmptyList}
-        data={exampleParticipants}
+        data={participants}
       />
     </SafeAreaView>
   );
