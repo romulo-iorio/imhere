@@ -5,7 +5,7 @@ import { styles } from "./styles";
 
 interface Props {
   participant: ParticipantInterface;
-  onRemove: () => void;
+  onRemove: (participant: ParticipantInterface) => void;
 }
 
 export const Participant: React.FC<Props> = ({ participant, onRemove }) => {
@@ -15,7 +15,10 @@ export const Participant: React.FC<Props> = ({ participant, onRemove }) => {
         <Text style={styles.name}>{participant.name}</Text>
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={onRemove}>
+      <TouchableOpacity
+        onPress={() => onRemove(participant)}
+        style={styles.button}
+      >
         <Text style={styles.buttonText}>-</Text>
       </TouchableOpacity>
     </View>

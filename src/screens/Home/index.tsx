@@ -35,8 +35,8 @@ export const Home = () => {
     console.log("Adicionando participante");
   };
 
-  const handleRemoveParticipant = () => {
-    console.log("Removendo participante");
+  const handleRemoveParticipant = (participant: ParticipantInterface) => {
+    console.log("Removendo participante ${participant.name}");
   };
 
   const renderParticipants = exampleParticipants.map((participant) => (
