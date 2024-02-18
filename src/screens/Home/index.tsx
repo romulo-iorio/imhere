@@ -54,21 +54,23 @@ export const Home = () => {
   };
 
   const handleRemoveParticipant = (participant: ParticipantInterface) => {
+    const confirmRemoval = () => {
+      Alert.alert(
+        "Removido!",
+        `Participante ${participant.name} removido com sucesso!`
+      );
+
+      setParticipants((prev) =>
+        prev.filter((item) => item.id !== participant.id)
+      );
+    };
+
     Alert.alert(
       "Remover Participante",
       `Deseja remover o participante ${participant.name} da lista de presença?`,
       [
         { text: "Não, cancelar", style: "cancel" },
-        {
-          text: "Sim, remover!",
-          style: "destructive",
-          onPress: () => {
-            Alert.alert(
-              "Removido!",
-              `Participante ${participant.name} removido com sucesso!`
-            );
-          },
-        },
+        { onPress: confirmRemoval, text: "Sim, remover!" },
       ]
     );
   };
