@@ -6,7 +6,6 @@ import {
   Text,
   View,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
 
 import type { Participant as ParticipantInterface } from "../../interfaces";
 import { Participant } from "../../components";
@@ -42,13 +41,11 @@ export const Home = () => {
   };
 
   const handleRemoveParticipant = (participant: ParticipantInterface) => {
-    console.log("Removendo participante ${participant.name}");
+    console.log(`Removendo participante ${participant.name}`);
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style="auto" />
-
       <Text style={styles.eventName}>Nome do evento</Text>
 
       <Text style={styles.eventDate}>Sexta, 16 de fevereiro de 2024</Text>
