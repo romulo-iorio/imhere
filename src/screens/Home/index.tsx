@@ -31,6 +31,11 @@ export const Home = () => {
       participants,
     });
 
+  const addParticipantButtonStyle = {
+    ...styles.button,
+    backgroundColor: !newParticipantName ? "#6b6b6b" : "#31cf67",
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.eventName}>Nome do evento</Text>
@@ -49,10 +54,7 @@ export const Home = () => {
         <TouchableOpacity
           onPress={handleAddParticipant}
           disabled={!newParticipantName}
-          style={{
-            ...styles.button,
-            backgroundColor: !newParticipantName ? "#6b6b6b" : "#31cf67",
-          }}
+          style={addParticipantButtonStyle}
         >
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
