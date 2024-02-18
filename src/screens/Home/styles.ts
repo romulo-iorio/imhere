@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   eventName: {
-    textAlign: "center",
+    textAlign: "left",
     color: "#fdfcfe",
     fontWeight: "bold",
     marginTop: 48,
