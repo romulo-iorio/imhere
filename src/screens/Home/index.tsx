@@ -44,7 +44,7 @@ export const Home = () => {
     }
 
     const newParticipant: ParticipantInterface = {
-      name: newParticipantName,
+      name: newParticipantName.trim(),
       id: crypto.randomUUID(),
     };
     setParticipants((prev) => [...prev, newParticipant]);
