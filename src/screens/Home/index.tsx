@@ -50,6 +50,7 @@ export const Home = () => {
       id: generateRandomID(),
     };
     setParticipants((prev) => [...prev, newParticipant]);
+    setNewParticipant("");
   };
 
   const handleRemoveParticipant = (participant: ParticipantInterface) => {
