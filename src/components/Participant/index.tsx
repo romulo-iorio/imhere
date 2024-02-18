@@ -1,7 +1,13 @@
 import { Text, TouchableOpacity, View } from "react-native";
+
+import type { Participant as ParticipantInterface } from "../../interfaces";
 import { styles } from "./styles";
 
-export const Participant: React.FC = () => {
+interface Props {
+  participant: ParticipantInterface;
+}
+
+export const Participant: React.FC<Props> = ({ participant }) => {
   const handleRemoveParticipant = () => {
     console.log("Removendo participante");
   };
@@ -9,7 +15,7 @@ export const Participant: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.nameContainer}>
-        <Text style={styles.name}>Romulo Iorio</Text>
+        <Text style={styles.name}>{participant.name}</Text>
       </View>
 
       <TouchableOpacity style={styles.button} onPress={handleRemoveParticipant}>

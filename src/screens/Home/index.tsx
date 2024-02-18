@@ -7,13 +7,37 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
+import type { Participant as ParticipantInterface } from "../../interfaces";
 import { Participant } from "../../components";
 import { styles } from "./styles";
+
+const exampleParticipants: ParticipantInterface[] = [
+  {
+    name: "Romulo Iorio",
+    id: "0",
+  },
+  {
+    name: "João",
+    id: "1",
+  },
+  {
+    name: "Maria",
+    id: "2",
+  },
+  {
+    name: "José",
+    id: "3",
+  },
+];
 
 export const Home = () => {
   const handleAddParticipant = () => {
     console.log("Adicionando participante");
   };
+
+  const renderParticipants = exampleParticipants.map((participant) => (
+    <Participant key={participant.id} participant={participant} />
+  ));
 
   return (
     <SafeAreaView style={styles.container}>
@@ -35,12 +59,7 @@ export const Home = () => {
         </TouchableOpacity>
       </View>
 
-      <Participant />
-      <Participant />
-      <Participant />
-      <Participant />
-      <Participant />
-      <Participant />
+      {renderParticipants}
     </SafeAreaView>
   );
 };
