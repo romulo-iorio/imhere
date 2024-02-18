@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import type { Participant as ParticipantInterface } from "../interfaces";
 import { Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Props {
   setNewParticipantName: React.Dispatch<React.SetStateAction<string>>;
   newParticipantName: string;
 }
+
+const PARTICIPANTS_STORAGE_KEY = "@imhere/participants";
 
 const generateRandomID = () => Math.random().toString(36).substr(2, 9);
 
@@ -15,6 +18,18 @@ export const useParticipants = ({
   newParticipantName,
 }: Props) => {
   const [participants, setParticipants] = useState<ParticipantInterface[]>([]);
+
+  useEffect(() => {
+    AsyncStorage.getItem(PARTICIPANTS_STORAGE_KEY).then((participantsJSON) => {
+      if (!participantsJSON) return;
+      setParticipants(JSON.parse(participantsJSON));
+    });
+  }, []);
+
+  useEffect(() => {
+    const participantsJSON = JSON.stringify(participants);
+    AsyncStorage.setItem(PARTICIPANTS_STORAGE_KEY, participantsJSON);
+  }, [participants]);
 
   const handleAddParticipant = () => {
     const participantWithThisNameExists = participants.some(
