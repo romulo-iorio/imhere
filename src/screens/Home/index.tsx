@@ -1,10 +1,10 @@
 import {
-  Text,
+  TouchableOpacity,
   SafeAreaView,
   TextInput,
-  TouchableOpacity,
+  FlatList,
+  Text,
   View,
-  ScrollView,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
@@ -28,6 +28,13 @@ const exampleParticipants: ParticipantInterface[] = [
   { name: "Ricarda", id: "12" },
   { name: "Rodriga", id: "13" },
 ];
+
+const EmptyList = () => (
+  <Text style={styles.emptyListText}>
+    Ninguém chegou no evento ainda? Adicione participantes à sua lista de
+    presença.
+  </Text>
+);
 
 export const Home = () => {
   const handleAddParticipant = () => {
@@ -66,9 +73,15 @@ export const Home = () => {
         </TouchableOpacity>
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {renderParticipants}
-      </ScrollView>
+      <FlatList
+        renderItem={({ item }) => (
+          <Participant participant={item} onRemove={handleRemoveParticipant} />
+        )}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.id}
+        ListEmptyComponent={EmptyList}
+        data={exampleParticipants}
+      />
     </SafeAreaView>
   );
 };
