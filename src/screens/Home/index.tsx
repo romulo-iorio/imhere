@@ -45,14 +45,6 @@ export const Home = () => {
     console.log("Removendo participante ${participant.name}");
   };
 
-  const renderParticipants = exampleParticipants.map((participant) => (
-    <Participant
-      onRemove={handleRemoveParticipant}
-      participant={participant}
-      key={participant.id}
-    />
-  ));
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
