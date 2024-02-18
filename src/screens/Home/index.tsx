@@ -3,16 +3,14 @@ import {
   SafeAreaView,
   TextInput,
   FlatList,
-  Alert,
   Text,
   View,
 } from "react-native";
 import { useState } from "react";
 
-import type { Participant as ParticipantInterface } from "../../interfaces";
+import { useParticipants, useParticipantsHandlers } from "../../hooks";
 import { Participant } from "../../components";
 import { styles } from "./styles";
-import { useParticipants } from "../../hooks";
 
 const EmptyList = () => (
   <Text style={styles.emptyListText}>
@@ -23,8 +21,15 @@ const EmptyList = () => (
 
 export const Home = () => {
   const [newParticipantName, setNewParticipantName] = useState("");
-  const { participants, handleAddParticipant, handleRemoveParticipant } =
-    useParticipants({ newParticipantName, setNewParticipantName });
+  const { participants, setParticipants } = useParticipants();
+
+  const { handleAddParticipant, handleRemoveParticipant } =
+    useParticipantsHandlers({
+      setNewParticipantName,
+      newParticipantName,
+      setParticipants,
+      participants,
+    });
 
   return (
     <SafeAreaView style={styles.container}>
