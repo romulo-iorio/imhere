@@ -49,7 +49,10 @@ export const Home = () => {
         <TouchableOpacity
           onPress={handleAddParticipant}
           disabled={!newParticipantName}
-          style={styles.button}
+          style={{
+            ...styles.button,
+            backgroundColor: !newParticipantName ? "#6b6b6b" : "#31cf67",
+          }}
         >
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
