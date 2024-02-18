@@ -3,32 +3,15 @@ import {
   SafeAreaView,
   TextInput,
   FlatList,
+  Alert,
   Text,
   View,
-  Alert,
 } from "react-native";
 import { useState } from "react";
 
 import type { Participant as ParticipantInterface } from "../../interfaces";
 import { Participant } from "../../components";
 import { styles } from "./styles";
-
-const exampleParticipants: ParticipantInterface[] = [
-  { name: "Romulo Iorio", id: "0" },
-  { name: "João", id: "1" },
-  { name: "Maria", id: "2" },
-  { name: "José", id: "3" },
-  { name: "Pedro", id: "4" },
-  { name: "Ana", id: "5" },
-  { name: "Paula", id: "6" },
-  { name: "Carlos", id: "7" },
-  { name: "Rafael", id: "8" },
-  { name: "Ricardo", id: "9" },
-  { name: "Rodrigo", id: "10" },
-  { name: "Rafaela", id: "11" },
-  { name: "Ricarda", id: "12" },
-  { name: "Rodriga", id: "13" },
-];
 
 const EmptyList = () => (
   <Text style={styles.emptyListText}>
@@ -38,14 +21,20 @@ const EmptyList = () => (
 );
 
 export const Home = () => {
-  const [participants, setParticipants] =
-    useState<ParticipantInterface[]>(exampleParticipants);
-  const [newParticipant, setNewParticipant] = useState("");
+  const [participants, setParticipants] = useState<ParticipantInterface[]>([]);
+  const [newParticipantName, setNewParticipant] = useState("");
 
   const handleAddParticipant = () => {
     const participantWithThisNameExists = participants.some(
-      (participant) => participant.name === newParticipant
+      (participant) => participant.name === newParticipantName
     );
+
+    if (!newParticipantName) {
+      return Alert.alert(
+        "Nome Inválido",
+        "O nome do participante não pode ser vazio"
+      );
+    }
 
     if (participantWithThisNameExists) {
       return Alert.alert(
@@ -53,6 +42,12 @@ export const Home = () => {
         "Já existe um participante na lista com esse nome"
       );
     }
+
+    const newParticipant: ParticipantInterface = {
+      name: newParticipantName,
+      id: crypto.randomUUID(),
+    };
+    setParticipants((prev) => [...prev, newParticipant]);
   };
 
   const handleRemoveParticipant = (participant: ParticipantInterface) => {
@@ -86,13 +81,13 @@ export const Home = () => {
           placeholder="Nome do participante"
           placeholderTextColor="#6b6b6b"
           onChangeText={setNewParticipant}
-          value={newParticipant}
+          value={newParticipantName}
           style={styles.input}
         />
 
         <TouchableOpacity
           onPress={handleAddParticipant}
-          disabled={!newParticipant}
+          disabled={!newParticipantName}
           style={styles.button}
         >
           <Text style={styles.buttonText}>+</Text>
