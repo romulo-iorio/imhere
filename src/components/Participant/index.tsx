@@ -5,20 +5,17 @@ import { styles } from "./styles";
 
 interface Props {
   participant: ParticipantInterface;
+  onRemove: () => void;
 }
 
-export const Participant: React.FC<Props> = ({ participant }) => {
-  const handleRemoveParticipant = () => {
-    console.log("Removendo participante");
-  };
-
+export const Participant: React.FC<Props> = ({ participant, onRemove }) => {
   return (
     <View style={styles.container}>
       <View style={styles.nameContainer}>
         <Text style={styles.name}>{participant.name}</Text>
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={handleRemoveParticipant}>
+      <TouchableOpacity style={styles.button} onPress={onRemove}>
         <Text style={styles.buttonText}>-</Text>
       </TouchableOpacity>
     </View>

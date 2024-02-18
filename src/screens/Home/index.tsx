@@ -35,8 +35,16 @@ export const Home = () => {
     console.log("Adicionando participante");
   };
 
+  const handleRemoveParticipant = () => {
+    console.log("Removendo participante");
+  };
+
   const renderParticipants = exampleParticipants.map((participant) => (
-    <Participant key={participant.id} participant={participant} />
+    <Participant
+      onRemove={handleRemoveParticipant}
+      participant={participant}
+      key={participant.id}
+    />
   ));
 
   return (
