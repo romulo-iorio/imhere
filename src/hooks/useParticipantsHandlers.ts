@@ -62,7 +62,11 @@ export const useParticipantsHandlers = ({
       `Deseja remover o participante ${participant.name} da lista de presença?`,
       [
         { text: "Não, cancelar", style: "cancel" },
-        { onPress: confirmRemoval, text: "Sim, remover!" },
+        {
+          onPress: confirmRemoval,
+          text: "Sim, remover!",
+          style: "destructive",
+        },
       ]
     );
   };
